@@ -156,9 +156,17 @@ function abrirPix(valor, item) {
 
     const payloadFinal = payload + crc16(payload);
 
+    // Gera QR Code localmente (sem API externa)
+    const typeNumber = 0;
+    const errorCorrection = 'L';
+    const qr = qrcode(typeNumber, errorCorrection);
+    qr.addData(payloadFinal);
+    qr.make();
+    const qrDataUrl = qr.createDataURL(10, 4); // modulo 10px, margem 4 modulos
+
     qrPlaceholder.innerHTML = '';
     const imgQrCode = document.createElement('img');
-    imgQrCode.src = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(payloadFinal)}`;
+    imgQrCode.src = qrDataUrl;
     imgQrCode.alt = 'QR Code PIX';
     imgQrCode.style.maxWidth = '100%';
     qrPlaceholder.appendChild(imgQrCode);
