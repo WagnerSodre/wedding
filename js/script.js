@@ -1,17 +1,17 @@
 /* ===== Dados ===== */
 const GIFTS = [
-    { id: 1, name: 'Lua de Mel', desc: 'Viagem dos Sonhos', icon: '🏝️', price: 2000 },
-    { id: 2, name: 'Conjunto de Panelas', desc: 'Antiaderente completo', icon: '🍳', price: 350 },
-    { id: 3, name: 'Reforma na Casa', desc: 'Tinta e materiais', icon: '🏠', price: 1500 },
-    { id: 4, name: 'Liquidificador', desc: 'Potente e silencioso', icon: '🥤', price: 250 },
-    { id: 5, name: 'Jogo de Cama', desc: 'Rei / Queen size', icon: '🛏️', price: 300 },
-    { id: 6, name: 'Micro-ondas', desc: '30 litros inox', icon: '🔥', price: 500 },
-    { id: 7, name: 'Batedeira', desc: 'Planetaria profissional', icon: '🧁', price: 400 },
-    { id: 8, name: 'Jantar Romantico', desc: 'Restaurante especial', icon: '🍽️', price: 200 },
-    { id: 9, name: 'Cesta de Cafe da Manha', desc: 'Caprichado para dois', icon: '🥐', price: 150 },
-    { id: 10, name: 'Jogo de Toalhas', desc: 'Banho e rosto', icon: '🛁', price: 120 },
-    { id: 11, name: 'Churrasqueira', desc: 'A gas ou eletrica', icon: '🍖', price: 800 },
-    { id: 12, name: 'Sofa Novo', desc: 'Retratil e confortavel', icon: '🛋️', price: 1800 },
+    { id: 1, name: 'Lua de Mel', desc: 'Viagem dos Sonhos', icon: '🏝️', price: 2000, image: 'images/gift-1-lua-de-mel.png' },
+    { id: 2, name: 'Conjunto de Panelas', desc: 'Antiaderente completo', icon: '🍳', price: 350, image: 'images/gift-2-panelas.png' },
+    { id: 3, name: 'Reforma na Casa', desc: 'Tinta e materiais', icon: '🏠', price: 1500, image: 'images/gift-3-reforma.png' },
+    { id: 4, name: 'Liquidificador', desc: 'Potente e silencioso', icon: '🥤', price: 250, image: 'images/gift-4-liquidificador.png' },
+    { id: 5, name: 'Jogo de Cama', desc: 'Rei / Queen size', icon: '🛏️', price: 300, image: 'images/gift-5-jogo-de-cama.png' },
+    { id: 6, name: 'Micro-ondas', desc: '30 litros inox', icon: '🔥', price: 500, image: 'images/gift-6-microondas.png' },
+    { id: 7, name: 'Batedeira', desc: 'Planetaria profissional', icon: '🧁', price: 400, image: 'images/gift-7-batedeira.png' },
+    { id: 8, name: 'Jantar Romantico', desc: 'Restaurante especial', icon: '🍽️', price: 200, image: 'images/gift-8-jantar.png' },
+    { id: 9, name: 'Cesta de Cafe da Manha', desc: 'Caprichado para dois', icon: '🥐', price: 150, image: 'images/gift-9-cesta-cafe.png' },
+    { id: 10, name: 'Jogo de Toalhas', desc: 'Banho e rosto', icon: '🛁', price: 120, image: 'images/gift-10-toalhas.png' },
+    { id: 11, name: 'Churrasqueira', desc: 'A gas ou eletrica', icon: '🍖', price: 800, image: 'images/gift-11-churrasqueira.png' },
+    { id: 12, name: 'Sofa Novo', desc: 'Retratil e confortavel', icon: '🛋️', price: 1800, image: 'images/gift-12-sofa.png' },
 ];
 
 // Configuracao: substitua pela URL do Google Apps Script quando configurar
@@ -94,7 +94,7 @@ setInterval(updateCountdown, 1000);
 function renderGifts() {
     giftsGrid.innerHTML = GIFTS.map(gift => `
         <div class="gift-card">
-            <span class="gift-icon">${gift.icon}</span>
+            ${gift.image ? `<img src="${gift.image}" alt="${gift.name}" class="gift-image">` : `<span class="gift-icon">${gift.icon}</span>`}
             <h3 class="gift-name">${gift.name}</h3>
             <p class="gift-desc">${gift.desc}</p>
             <p class="gift-price">R$ ${gift.price.toLocaleString('pt-BR')}</p>
