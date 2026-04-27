@@ -28,6 +28,7 @@ const giftsGrid = document.getElementById('giftsGrid');
 const pixModal = document.getElementById('pixModal');
 const modalClose = document.getElementById('modalClose');
 const modalTitle = document.getElementById('modalTitle');
+const modalPrice = document.getElementById('modalPrice');
 const qrPlaceholder = document.getElementById('qrPlaceholder');
 const pixCodeInput = document.getElementById('pixCodeInput');
 const btnCopy = document.getElementById('btnCopy');
@@ -112,32 +113,66 @@ function renderGifts() {
 
 renderGifts();
 
+/* ===== PIX Config ===== */
+const MINHA_CHAVE_PIX = '+5521988510351'; // <-- SUBSTITUA PELA SUA CHAVE PIX
+const NOME_TITULAR = 'Wagner Sodre';               // <-- SUBSTITUA PELO NOME COMPLETO
+const CIDADE = 'Rio das Ostras';                           // <-- SUBSTITUA PELA CIDADE
+
+/* ===== CRC16 para Payload PIX ===== */
+function crc16(str) {
+    let crc = 0xFFFF;
+    let odd;
+    for (let i = 0; i < str.length; i++) {
+        crc = crc ^ (str.charCodeAt(i) << 8);
+        for (let j = 0; j < 8; j++) {
+            odd = (crc & 0x8000) !== 0;
+            crc = crc << 1;
+            if (odd) crc = crc ^ 0x1021;
+        }
+        crc = crc & 0xFFFF;
+    }
+    return crc.toString(16).toUpperCase().padStart(4, '0');
+}
+
 /* ===== PIX Modal ===== */
-function openModal(giftId) {
-    const gift = GIFTS.find(g => g.id === giftId);
-    if (!gift) return;
+function abrirPix(valor, item) {
+    modalTitle.textContent = item;
+    modalPrice.textContent = 'R$ ' + valor.toFixed(2).replace('.', ',');
 
-    modalTitle.textContent = gift.name;
+    const f = (id, conteudo) => id + conteudo.length.toString().padStart(2, '0') + conteudo;
+    const valorStr = valor.toFixed(2);
+    const merchantAccount = f("00", "BR.GOV.BCB.PIX") + f("01", MINHA_CHAVE_PIX);
 
-    // Possivel carregar imagem do QR code customizado por presente
-    // Para usar: coloque imagens na pasta images/qr-{id}.png
-    const qrPath = `images/qr-${giftId}.png`;
-    // Tenta carregar imagem; senao, exibe placeholder
-    const img = new Image();
-    img.onload = function() {
-        qrPlaceholder.innerHTML = '';
-        qrPlaceholder.appendChild(img);
-    };
-    img.onerror = function() {
-        qrPlaceholder.innerHTML = '<span>[insira aqui o QR Code PIX]</span>';
-    };
-    img.src = qrPath;
+    let payload = "000201";
+    payload += f("26", merchantAccount);
+    payload += "52040000";
+    payload += "5303986";
+    payload += f("54", valorStr);
+    payload += "5802BR";
+    payload += f("59", NOME_TITULAR);
+    payload += f("60", CIDADE);
+    payload += "62070503***";
+    payload += "6304";
 
-    // Placeholder do codigo PIX - substituir pelos codigos reais
-    pixCodeInput.value = `[Codigo PIX do presente: ${gift.name}]`;
+    const payloadFinal = payload + crc16(payload);
+
+    qrPlaceholder.innerHTML = '';
+    const imgQrCode = document.createElement('img');
+    imgQrCode.src = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(payloadFinal)}`;
+    imgQrCode.alt = 'QR Code PIX';
+    imgQrCode.style.maxWidth = '100%';
+    qrPlaceholder.appendChild(imgQrCode);
+
+    pixCodeInput.value = payloadFinal;
 
     pixModal.classList.add('active');
     document.body.style.overflow = 'hidden';
+}
+
+function openModal(giftId) {
+    const gift = GIFTS.find(g => g.id === giftId);
+    if (!gift) return;
+    abrirPix(gift.price, gift.name);
 }
 
 function closeModal() {
