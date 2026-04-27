@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wagner & Isabela — Nosso Casamento</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Navegação -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">W & I</a>
+            <button class="nav-toggle" id="navToggle" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#historia">Nossa História</a></li>
+                <li><a href="#presentes">Presentes</a></li>
+                <li><a href="#rsvp">Confirme sua Presença</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="inicio">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-subtitle">Estamos nos casando!</p>
+            <h1 class="hero-title">Wagner & Isabela</h1>
+            <p class="hero-date">21 de Novembro de 2026</p>
+            <div class="countdown" id="countdown">
+                <div class="countdown-item">
+                    <span id="days">0</span>
+                    <span class="countdown-label">Dias</span>
+                </div>
+                <div class="countdown-item">
+                    <span id="hours">0</span>
+                    <span class="countdown-label">Horas</span>
+                </div>
+                <div class="countdown-item">
+                    <span id="minutes">0</span>
+                    <span class="countdown-label">Min</span>
+                </div>
+                <div class="countdown-item">
+                    <span id="seconds">0</span>
+                    <span class="countdown-label">Seg</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nossa História -->
+    <section class="section" id="historia">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Nossa História</h2>
+                <p class="section-subtitle">Do primeiro olhar ao "sim, aceito"</p>
+            </div>
+            <div class="story-grid">
+                <div class="story-text">
+                    <p>Nossos caminhas se cruzaram de uma forma que parecia destino. Entre risadas, conversas intermináveis e planos para o futuro, descobrimos que estavamos prontos para construir uma vida juntos.</p>
+                    <p>Agora, como estamos a poucos passos do altar, queremos compartilhar este momento tao especial com as pessoas queridas que tornaram nossa historia ainda mais bonita.</p>
+                </div>
+                <div class="story-images">
+                    <div class="story-img-wrapper">
+                        <div class="story-img-placeholder" style="background-color: #8b9a7e;">
+                            <span>📸 Foto do Casal</span>
+                        </div>
+                    </div>
+                    <div class="story-img-wrapper">
+                        <div class="story-img-placeholder" style="background-color: #a8b89a;">
+                            <span>📸 Momento Especial</span>
+                        </div>
+                    </div>
+                    <div class="story-img-wrapper">
+                        <div class="story-img-placeholder" style="background-color: #c5d2b8;">
+                            <span>📸 Juntos</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Presentes -->
+    <section class="section section-alt" id="presentes">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Lista de Presentes</h2>
+                <p class="section-subtitle">Sua presenca ja e o melhor presente, mas se quiser nos presentear, aqui estao algumas sugestoes</p>
+            </div>
+            <div class="gifts-grid" id="giftsGrid"></div>
+        </div>
+    </section>
+
+    <!-- RSVP -->
+    <section class="section" id="rsvp">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Confirme sua Presenca</h2>
+                <p class="section-subtitle">Nos conte se voce vai participar deste dia inesquecivel</p>
+            </div>
+            <div class="rsvp-form-wrapper">
+                <form class="rsvp-form" id="rsvpForm">
+                    <div class="form-group">
+                        <label for="guestName">Seu nome completo *</label>
+                        <input type="text" id="guestName" name="guestName" required placeholder="Digite seu nome completo">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Voce ira ao casamento? *</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="attending" value="sim" id="attendingYes" required>
+                                <span class="radio-custom"></span>
+                                Sim, eu vou!
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="attending" value="nao" id="attendingNo">
+                                <span class="radio-custom"></span>
+                                Infelizmente nao posso ir
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="companionsGroup" style="display: none;">
+                        <label for="companionsCount">Quantos acompanhantes?</label>
+                        <select id="companionsCount" name="companionsCount">
+                            <option value="0">So eu</option>
+                            <option value="1">1 acompanhante</option>
+                            <option value="2">2 acompanhantes</option>
+                            <option value="3">3 acompanhantes</option>
+                            <option value="4">4 acompanhantes</option>
+                            <option value="5">5 acompanhantes</option>
+                        </select>
+                    </div>
+
+                    <div id="companionsFields"></div>
+
+                    <div class="form-group">
+                        <label for="message">Deixe uma mensagem para os noivos (opcional)</label>
+                        <textarea id="message" name="message" rows="3" placeholder="Escreva uma mensagem carinhosa..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="submitBtn">Confirmar Presenca</button>
+                </form>
+
+                <div class="rsvp-message rsvp-success" id="rsvpSuccess">
+                    <h3>Obrigado!</h3>
+                    <p>Sua confirmacao foi recebida com sucesso.</p>
+                </div>
+                <div class="rsvp-message rsvp-error" id="rsvpError">
+                    <h3>Algo deu errado</h3>
+                    <p>Nao conseguimos enviar sua confirmacao. Por favor, tente novamente mais tarde.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">Wagner & Isabela — 21.11.2026</p>
+            <p class="footer-sub">Com carinho, esperamos voce neste dia tao especial.</p>
+        </div>
+    </footer>
+
+    <!-- Modal PIX -->
+    <div class="modal-overlay" id="pixModal">
+        <div class="modal">
+            <button class="modal-close" id="modalClose" aria-label="Fechar">&times;</button>
+            <div class="modal-content">
+                <div class="modal-icon">🎁</div>
+                <h3 class="modal-title" id="modalTitle"></h3>
+                <p class="modal-desc">Escaneie o QR Code abaixo ou copie o codigo PIX para nos presentear!</p>
+                <div class="qr-placeholder" id="qrPlaceholder">
+                    <span>[insira aqui o QR Code PIX]</span>
+                </div>
+                <div class="pix-code-wrapper">
+                    <label>Codigo PIX</label>
+                    <div class="pix-code-box">
+                        <input type="text" id="pixCodeInput" readonly placeholder="Ex: 00020126360014BR.GOV.BCB.PIX..." value="">
+                        <button class="btn-copy" id="btnCopy" title="Copiar codigo">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
