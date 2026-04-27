@@ -15,7 +15,7 @@ const GIFTS = [
 ];
 
 // Configuracao: substitua pela URL do Google Apps Script quando configurar
-const APPS_SCRIPT_URL = '';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyFrSKFOb-OEyjcllfDenUbk654PmzzWVf2d8ydOjPTbGs6QNNXoeUKid8YTgZhf6xX/exec';
 
 // Datas do casamento
 const WEDDING_DATE = new Date('2026-11-21T16:00:00').getTime();
@@ -305,10 +305,10 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 // Adiciona efeito reveal aos elementos das secoes
-document.querySelectorAll('.story-text, .story-images, .gift-card, .rsvp-form-wrapper').forEach(el => {
+document.querySelectorAll('.section-header, .countdown, .story-layout, .gift-card, .rsvp-form-wrapper').forEach(el => {
     el.style.opacity = '0';
-    el.style.transform = 'translateY(24px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
     revealObserver.observe(el);
 });
 
