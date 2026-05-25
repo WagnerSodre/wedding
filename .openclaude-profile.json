@@ -1,0 +1,9 @@
+{
+  "profile": "openai",
+  "env": {
+    "OPENAI_BASE_URL": "https://nano-gpt.com/api/v1",
+    "OPENAI_MODEL": "moonshotai/kimi-k2.6:thinking",
+    "OPENAI_API_KEY": "sk-nano-fe074905-019d-4c8e-8fea-4125f3832ae8"
+  },
+  "createdAt": "2026-05-25T06:09:26.407Z"
+}

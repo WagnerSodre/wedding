@@ -348,7 +348,7 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 // Adiciona efeito reveal aos elementos das secoes
-document.querySelectorAll('.section-header, .countdown, .story-layout, .gift-card, .rsvp-form-wrapper').forEach(el => {
+document.querySelectorAll('.section-header, .countdown, .story-layout, .venue-card, .gift-card, .rsvp-form-wrapper').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(30px)';
     el.style.transition = 'opacity 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
